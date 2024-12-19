@@ -6,11 +6,11 @@ import os
 from launch_ros.descriptions import ParameterValue
 
 def generate_launch_description():
-    pkg_share = launch_ros.substitutions.FindPackageShare(package='nojam_description').find('nojam_description')
-    default_model_path = os.path.join(pkg_share, 'urdf/nojam.xacro')
+    pkg_share = launch_ros.substitutions.FindPackageShare(package='sfbot_test_description').find('sfbot_test_description')
+    default_model_path = os.path.join(pkg_share, 'urdf/sfbot_test.xacro')
     default_rviz_config_path = os.path.join(pkg_share, 'config/display.rviz')
     world_path = os.path.join(pkg_share, 'worlds/room.sdf')
-    # sdf_path = os.path.join(pkg_share, 'models/urdf/nojam/model.sdf')
+    # sdf_path = os.path.join(pkg_share, 'models/urdf/sfbot_test/model.sdf')
     use_sim_time = LaunchConfiguration('use_sim_time')
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
@@ -35,7 +35,7 @@ def generate_launch_description():
         condition=IfCondition(use_sim_time),
         package='gazebo_ros',
         executable='spawn_entity.py',
-        arguments=['-entity', 'nojam', '-topic', 'robot_description'],
+        arguments=['-entity', 'sfbot_test', '-topic', 'robot_description'],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
     )
