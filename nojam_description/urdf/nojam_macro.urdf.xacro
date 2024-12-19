@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<robot name="nojam" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="nojam" params="prefix">
+
+<xacro:include filename="$(find nojam_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find nojam_description)/urdf/nojam.trans" />
+<xacro:include filename="$(find nojam_description)/urdf/nojam.gazebo" />
+<link name="${prefix}base_link"/>
+
+<link name="${prefix}Component2">
+  <inertial>
+    <origin xyz="-0.0003531382214947123 0.003992290056932315 0.022859704650529382" rpy="0 0 0"/>
+    <mass value="0.4996098649177568"/>
+    <inertia ixx="0.000147" iyy="0.000131" izz="0.000117" ixy="1e-06" iyz="-1.7e-05" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://nojam_description/meshes/Component2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="nojam_silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://nojam_description/meshes/Component2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="${prefix}Revolute 1" type="continuous">
+  <origin xyz="0.0 0.0 0.005" rpy="0 0 0"/>
+  <parent link="${prefix}base_link"/>
+  <child link="${prefix}Component2"/>
+  <axis xyz="0.0 0.0 1.0"/>
+</joint>
+
+</xacro:macro>
+</robot>

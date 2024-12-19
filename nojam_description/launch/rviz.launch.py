@@ -5,8 +5,8 @@ import launch_ros
 from launch_ros.descriptions import ParameterValue
 
 def generate_launch_description():
-    pkg_share = launch_ros.substitutions.FindPackageShare(package='01_description').find('01_description')
-    default_model_path = os.path.join(pkg_share, 'urdf/01.xacro')
+    pkg_share = launch_ros.substitutions.FindPackageShare(package='nojam_description').find('nojam_description')
+    default_model_path = os.path.join(pkg_share, 'urdf/nojam.xacro')
     default_rviz_config_path = os.path.join(pkg_share, 'config/display.rviz')
     use_sim_time = LaunchConfiguration('use_sim_time')
 
